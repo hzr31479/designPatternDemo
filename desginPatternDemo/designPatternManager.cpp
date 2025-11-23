@@ -1,6 +1,7 @@
 #include "designPatternManager.h"
 #include "simpleFactory.h"
 #include "factoryMethod.h"
+#include "abstractFactory.h"
 using namespace std;
 
 void designPatternManger::runDesignPatternByType(const DesignPatternType& type) {
@@ -14,20 +15,29 @@ void designPatternManger::runDesignPatternByType(const DesignPatternType& type) 
 
 	switch (type) {
 		case DesignPatternType::SIMPLE_FACTORY:		// 简单工厂模式
-			runSimpleFactoryPattern();
+				runSimpleFactoryPattern();
 			break;
 		case DesignPatternType::FACTORY_METHOD:		// 工厂方法模式
-			 runFactoryMethodPattern();
-			break;
-		case DesignPatternType::ABSTRACT_FACTORY:	//	抽象工厂模式
-			runAbstractFactoryPattern();
-			break;
+				runFactoryMethodPattern();
+				break;
+		case DesignPatternType::ABSTRACT_FACTORY:	// 抽象工厂模式
+				runAbstractFactoryPattern();
+				break;
 		case DesignPatternType::SINGLETON:			// 单例模式
-			// runSingletonPattern();
-			break;
+				runSingletonPattern();
+				break;
 		case DesignPatternType::BUILDER:			// 建造者模式
-			// runBuilderPattern();
-			break;
+				runBuilderPattern();
+				break;
+		case DesignPatternType::PROTOTYPE:			// 原型模式
+				runPrototypePattern();
+				break;		
+		case DesignPatternType::ADAPTER:			// 适配器模式
+				runAdapterPattern();
+				break;
+		case DesignPatternType::BRIDGE:				// 桥接模式
+				runBridgePattern();
+				break;
 
 		default:
 			std::cout << "Design pattern type not recognized." << std::endl;
@@ -76,7 +86,17 @@ void designPatternManger::runFactoryMethodPattern() {
 
 // 运行抽象工厂模式
 void designPatternManger::runAbstractFactoryPattern() {
-	// todo
+	std::cout << "执行抽象工厂模式" << std::endl;
+	// 创建篮球工厂
+	std::shared_ptr<AbstractFactoryPattern::AbstractBallFactory> ballFactory = std::make_shared<AbstractFactoryPattern::basketBallFactory>();
+	ballFactory->getBall();
+	ballFactory->getShirt();
+	ballFactory->getShoes();
+	// 创建足球工厂
+	ballFactory = std::make_shared<AbstractFactoryPattern::footBallFactory>();
+	ballFactory->getBall();
+	ballFactory->getShirt();
+	ballFactory->getShoes();
 }
 
 // 运行单例模式
