@@ -23,10 +23,10 @@
 #include "designPatternManager.h"
 
 int main()
-{
+{	// 创建设计模式管理器
 	auto manager = std::make_shared<designPatternManger>();
 	// 设计模式类型
-	auto patternType = DesignPatternType::FACTORY_METHOD;
+	auto patternType = DesignPatternType::SIMPLE_FACTORY;
 	// 运行设计模式
 	manager->runDesignPatternByType(patternType);
 #ifdef win32
