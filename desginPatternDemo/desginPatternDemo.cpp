@@ -26,7 +26,8 @@ int main()
 {
 	auto manager = std::make_shared<designPatternManger>();
 	// 设计模式类型
-	auto patternType = DesignPatternType::SIMPLE_FACTORY; 
+	auto patternType = DesignPatternType::FACTORY_METHOD;
+	// 运行设计模式
 	manager->runDesignPatternByType(patternType);
 #ifdef win32
 	system("pause");

@@ -1,6 +1,6 @@
 #include "designPatternManager.h"
 #include "simpleFactory.h"
-
+#include "factoryMethod.h"
 using namespace std;
 
 void designPatternManger::runDesignPatternByType(const DesignPatternType& type) {
@@ -34,20 +34,39 @@ void designPatternManger::runDesignPatternByType(const DesignPatternType& type) 
 
 // 运行简单工厂模式
 void designPatternManger::runSimpleFactoryPattern() {
+	std::cout << "执行简单工厂模式" << std::endl;
 	// 创建产品A
-	std::shared_ptr<SimpleFactory> factoryA = std::make_shared<SimpleFactory>();
-	std::shared_ptr<AbstratcProduct> productA = factoryA->getProduct("A");
+	std::shared_ptr<factorySimple::SimpleFactory> factoryA = std::make_shared<factorySimple::SimpleFactory>();
+	std::shared_ptr<factorySimple::AbstractProduct> productA = factoryA->getProduct("A");
 	// 创建产品B
-	std::shared_ptr<SimpleFactory> factoryB = std::make_shared<SimpleFactory>();
-	std::shared_ptr<AbstratcProduct> productB = factoryB->getProduct("B");
+	std::shared_ptr<factorySimple::SimpleFactory> factoryB = std::make_shared<factorySimple::SimpleFactory>();
+	std::shared_ptr<factorySimple::AbstractProduct> productB = factoryB->getProduct("B");
 	// 创建产品C
-	std:shared_ptr<SimpleFactory> factoryC = std::make_shared<SimpleFactory>();
-	std::shared_ptr<AbstratcProduct> productC = factoryC->getProduct("C");
+	std:shared_ptr<factorySimple::SimpleFactory> factoryC = std::make_shared<factorySimple::SimpleFactory>();
+	std::shared_ptr<factorySimple::AbstractProduct> productC = factoryC->getProduct("C");
 }
 
 // 运行工厂方法模式
 void designPatternManger::runFactoryMethodPattern() {
-	// todo
+	std::cout << "执行工厂方法模式" << std::endl;
+	// 直接创建具体类
+	std::shared_ptr<factoryMethod::AbstractFactory> factoryA = std::make_shared<factoryMethod::ConcreteFactoryA>();
+	// 获取具体产品
+	auto productA = factoryA->getConcreteProduct();
+
+	// 直接创建具体类
+	std::shared_ptr<factoryMethod::AbstractFactory> factoryB = std::make_shared<factoryMethod::ConcreteFactoryB>();
+	// 获取具体产品
+	auto productB = factoryB->getConcreteProduct();
+
+	// 直接创建具体类
+	std::shared_ptr<factoryMethod::AbstractFactory> factoryC = std::make_shared<factoryMethod::ConcreteFactoryC>();
+	// 获取具体产品
+	auto productC = factoryC->getConcreteProduct();
+
+	delete productA;
+	delete productB;
+	delete productC;
 }
 
 // 运行抽象工厂模式

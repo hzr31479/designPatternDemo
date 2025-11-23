@@ -27,85 +27,88 @@
 #include<iostream>
 #include<string>
 
-using namespace std;
+namespace factorySimple {
+	using namespace std;
+	// 抽象产品类
+	class AbstractProduct {
+	public:
+		AbstractProduct() {};
+		virtual ~AbstractProduct() {};
 
-// 抽象产品类
-class AbstratcProduct {
-public:
-	AbstratcProduct() {};
-	virtual ~AbstratcProduct() {};
-
-	virtual void printType() {};
-	virtual void doSomething() {};
-};
-
-// 具体产品类A
-class productA: public AbstratcProduct {
-public:
-	productA() {
-		printType();
-		doSomething();
-	};	
-	~productA() {};	
-
-	void printType() override {
-		std::cout << "This is product A" << std::endl;
-	}
-	void doSomething() override {
-		std::cout << "Product A is doing something" << std::endl;
-	}
-};
-
-// 具体产品类B
-class productB : public AbstratcProduct {
-public:
-	productB() {
-		printType();
-		doSomething();
+		virtual void printType() {};
+		virtual void doSomething() {};
 	};
-	~productB() {};
 
-	void printType() override {
-		std::cout << "This is product B" << std::endl;
-	}
-	void doSomething() override {
-		std::cout << "Product B is doing something" << std::endl;
-	}
-};
+	// 具体产品类A
+	class productA: public AbstractProduct {
+	public:
+		productA() {
+			printType();
+			doSomething();
+		};	
+		~productA() {};	
 
-// 具体产品类C
-class productC: public AbstratcProduct {
-public:
-	productC() {
-		printType();
-		doSomething();
+		void printType() override {
+			std::cout << "This is product A" << std::endl;
+		}
+		void doSomething() override {
+			std::cout << "Product A is doing something" << std::endl;
+		}
 	};
-	~productC() {};
 
-	void printType() override {
-		std::cout << "This is product C" << std::endl;
-	}
-	void doSomething() override {
-		std::cout << "Product C is doing something" << std::endl;
-	}
-};
+	// 具体产品类B
+	class productB : public AbstractProduct {
+	public:
+		productB() {
+			printType();
+			doSomething();
+		};
+		~productB() {};
 
-// 简单工厂类
-class SimpleFactory {
-public:
-	static std::shared_ptr<AbstratcProduct> getProduct (const string& type) {
-		if (type == "A") {
-			return std::make_shared<productA>();
+		void printType() override {
+			std::cout << "This is product B" << std::endl;
 		}
-		else if (type == "B") {
-			return std::make_shared<productB>();
+		void doSomething() override {
+			std::cout << "Product B is doing something" << std::endl;
 		}
-		else if (type == "C") {
-			return std::make_shared<productC>();
+	};
+
+	// 具体产品类C
+	class productC: public AbstractProduct {
+	public:
+		productC() {
+			printType();
+			doSomething();
+		};
+		~productC() {};
+
+		void printType() override {
+			std::cout << "This is product C" << std::endl;
 		}
-		else {
-			return nullptr;
+		void doSomething() override {
+			std::cout << "Product C is doing something" << std::endl;
 		}
-	}
-};
-#endif //__SIMPLE_FACTORY__
+	};
+
+	// 简单工厂类
+	class SimpleFactory {
+	public:
+		static std::shared_ptr<AbstractProduct> getProduct (const string& type) {
+			if (type == "A") {
+				return std::make_shared<productA>();
+			}
+			else if (type == "B") {
+				return std::make_shared<productB>();
+			}
+			else if (type == "C") {
+				return std::make_shared<productC>();
+			}
+			else {
+				return nullptr;
+			}
+		}
+	};
+
+	#endif //__SIMPLE_FACTORY__
+
+} // namespace factorySimple

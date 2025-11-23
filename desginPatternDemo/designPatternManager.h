@@ -6,8 +6,6 @@
 #include <iostream>
 #include <iomanip>
 
-#include "simpleFactory.h"
-
 // 设计模式枚举
 enum class DesignPatternType {
     // 创建型模式 (1-5)
